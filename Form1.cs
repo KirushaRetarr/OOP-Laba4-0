@@ -19,18 +19,25 @@ namespace OOP_Laba4_0
 
         private void button1_Click(object sender, EventArgs e)
         {
-            double n = double.Parse(textBox1.Text);
-            double result = 0;
-            int counter = 1;
-
-            do
+            if (double.TryParse(textBox1.Text, out double n) && n > 0) 
             {
-                result += 1.0 / ((2 * counter - 1) * (2 * counter + 1));
-                counter++;
-            }
-            while (counter <= n);
+                double result = 0;
+                int counter = 1;
 
-            textBox2.Text = result.ToString("F6");
+                do
+                {
+                    result += 1.0 / ((2 * counter - 1) * (2 * counter + 1));
+                    counter++;
+                }
+                while (counter <= n);
+
+                textBox2.Text = result.ToString("F6");
+            } 
+            else
+            {
+                MessageBox.Show("Нужно корректное значение n", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
         }
     }
 }
